@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>Excluir o produto: "{{$produto->nome}}" </h1>
     <form action="{{ route( 'excluir_produto', ['id' => $produto->id] ) }}" method="post">
         @csrf
         <label for="nome">Tem certeza que deseja excluir esse produto?</label><br>
