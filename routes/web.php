@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdutosController;
 
 
 /*
@@ -19,11 +20,13 @@ Route::get('/', function () {
 });
 
 
+Route::get('/produtos/novo', [ProdutosController::class, 'create']);
+Route::post('/produtos/novo', [ProdutosController::class, 'store'])->name('registrar_produto');
 
-Route::get('/produtos/novo', 'App\\Http\\Controllers\\ProdutosController@create');
-Route::post('/produtos/novo', 'App\\Http\\Controllers\\ProdutosController@store')->name('registrar_produto');
-Route::get('/produto/ver/{id}', 'App\\Http\\Controllers\\ProdutosController@show');
-Route::get('/produto/editar/{id}', 'App\\Http\\Controllers\\ProdutosController@edit');
-Route::post('/produto/editar/{id}', 'App\\Http\\Controllers\\ProdutosController@update')->name('alterar_produto');
-Route::get('/produto/excluir/{id}', 'App\\Http\\Controllers\\ProdutosController@delete');
-Route::post('/produto/excluir/{id}', 'App\\Http\\Controllers\\ProdutosController@destroy')->name('excluir_produto');
+Route::get('/produto/ver/{id}', [ProdutosController::class, 'show']);
+
+Route::get('/produto/editar/{id}', [ProdutosController::class, 'edit']);
+Route::post('/produto/editar/{id}', [ProdutosController::class, 'update'])->name('alterar_produto');
+
+Route::get('/produto/excluir/{id}', [ProdutosController::class, 'delete']);
+Route::post('/produto/excluir/{id}', [ProdutosController::class, 'destroy'])->name('excluir_produto');
